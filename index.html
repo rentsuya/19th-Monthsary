@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My One and Only Love</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffd1dc, #ffe4e1);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .intro,
+    .message {
+      text-align: center;
+      padding: 40px 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 2s ease;
+      width: 90%;
+      max-width: 450px;
+      z-index: 2;
+    }
+
+    .intro h1 {
+      font-size: 28px;
+      color: #d6336c;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #fff0f5;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .open-btn {
+      padding: 12px 24px;
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+    }
+
+    .open-btn:hover {
+      background-color: #ff4d6d;
+      transform: scale(1.05);
+    }
+
+    .message {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 1s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .message p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 14px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .signature {
+      margin-top: 25px;
+      font-weight: bold;
+      font-style: italic;
+      color: #d6336c;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #ffb6c1, 0 0 10px #ffb6c1;
+      }
+
+      to {
+        text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 129, 0.7);
+      }
+
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 107, 129, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 129, 0);
+      }
+    }
+
+    /* Falling heart emojis */
+    .heart {
+      position: absolute;
+      top: -30px;
+      font-size: 24px;
+      opacity: 0.9;
+      animation: fall linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      box-shadow: 0 0 8px 2px #fff;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .intro h1 {
+        font-size: 24px;
+      }
+
+      .open-btn {
+        font-size: 14px;
+      }
+
+      .message p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Falling hearts and sparkles -->
+  <script>
+    const heartCount = 30;
+    const sparkleCount = 40;
+
+    for (let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = '❤️';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${3 + Math.random() * 5}s`;
+      heart.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(heart);
+    }
+
+    for (let i = 0; i < sparkleCount; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = `${Math.random() * 100}vw`;
+      sparkle.style.top = `${Math.random() * 100}vh`;
+      sparkle.style.animationDuration = `${1.5 + Math.random()}s`;
+      sparkle.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(sparkle);
+    }
+
+    function openMessage() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("message").style.display = "flex";
+    }
+  </script>
+
+  <!-- Intro -->
+  <div class="intro" id="intro">
+    <h1>For my one and only love 💖</h1>
+    <button class="open-btn" onclick="openMessage()">Open My Heart 💌</button>
+  </div>
+
+  <!-- Message -->
+  <div class="message" id="message">
+    <p>Hi my lovee ❤️</p>
+    <p>It’s been 19 months na and every day with you has been a mix of laughter, lessons, love, and growth. We’ve been through arguments, misunderstandings, and hard times, but we’re still here. Stronger. Closer. Wiser. And I thank God every day na you're still here with me mahal ko.</p>
+    <p>Despite all the fights and problems, want ko na lagi mong tandaan na no matter what happens, you will always be my one and only baby, my girlfriend, my best friend, my love, and my wife. Walang sino man could ever take your place in my heart.</p>
+    <p>Ikaw palagi naiisip ko every morning and every night. You’re my peace baby, my comfort, my reason, and my forever. I may not always say the right words, and I may not be perfect, but my love for you is real and it will never fade.</p>
+    <p>Thank you for always choosing to stay with me lovie. For loving me even when things aren’t easy. For being patient with me. And for being my home in this messy world.</p>
+    <p>Kahit di us magkasama ngayong monthsary, I'm happy pa rin because you'll always be in my heart.</p>
+    <p>Here’s to 19 months of love and to many more months, years, and memories ahead. I love you so much with all my heart and soul, more than you’ll ever know. Always.</p>
+    
+    <p>Happy 19th Monthsary to us Love!</p>
+    <p class="signature">Forever yours,<br>Ur Mister 😘</p>
+  </div>
+
+</body>
+
+</html>
